@@ -7,7 +7,7 @@ A high-speed, stock-reservation service implementing the **reserve → pay → c
 ## Quick Start
 
 ```bash
-cd artifacts/bnp-trading-platform
+cd bnp-trading-platform
 mvn spring-boot:run
 ```
 
@@ -76,7 +76,7 @@ curl -s http://localhost:8080/api/products/<productId> | jq .
 
 ```bash
 # All tests (unit + integration + concurrency)
-cd artifacts/trading-platform && mvn test
+cd bnp-trading-platform && mvn test
 
 # Specific test class
 mvn test -Dtest=ConcurrencyTest
@@ -140,11 +140,3 @@ Payment confirmation checks the order state before acting:
 | `app.reservation.window-minutes` | `RESERVATION_WINDOW_MINUTES` | `15` | How long a reservation stays valid |
 | `app.reservation.cleanup-interval-ms` | `RESERVATION_CLEANUP_INTERVAL_MS` | `60000` | Expiry scheduler poll interval |
 
----
-
-## Assumptions
-
-1. Single-node deployment — pessimistic DB locking is sufficient; a distributed solution would require Redis-based distributed locks or a message queue, which is out of scope.
-2. H2 in-memory database is intentional for the case study; a production deployment would use PostgreSQL with the same schema (H2 is set to `MODE=PostgreSQL`).
-3. Authentication/authorisation is out of scope.
-4. The `clientRef` field on orders supports client-side duplicate detection but server-side deduplication is not implemented (out of scope).
