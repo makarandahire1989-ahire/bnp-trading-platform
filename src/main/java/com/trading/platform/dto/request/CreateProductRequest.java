@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 public record CreateProductRequest(
 
         @NotBlank(message = "Product name must not be blank")
-        @Schema(description = "Human-readable name of the product", example = "ACME Corp Stock Unit")
+        @Schema(description = "Human-readable name of the product", example = "Tata Corp Stock Unit")
         String name,
 
         @NotNull

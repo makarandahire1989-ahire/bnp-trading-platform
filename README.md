@@ -1,4 +1,4 @@
-# Equity Trading Platform
+# BNP Trading Platform
 
 A high-speed, stock-reservation service implementing the **reserve → pay → confirm** workflow with full concurrency safety.
 
@@ -53,7 +53,7 @@ Every response follows this shape:
 # 1. Create a product with 100 units
 curl -s -X POST http://localhost:8080/api/products \
   -H 'Content-Type: application/json' \
-  -d '{"name":"ACME Corp Stock","totalQuantity":100}' | jq .
+  -d '{"name":"Tata Corp Stock","totalQuantity":100}' | jq .
 
 # 2. Place an order (copy productId from step 1)
 curl -s -X POST http://localhost:8080/api/orders \
