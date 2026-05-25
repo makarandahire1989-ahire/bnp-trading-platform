@@ -19,6 +19,6 @@ public record PlaceOrderRequest(
         Integer quantity,
 
         @Schema(description = "Optional client-side reference for idempotency or tracking",
-                example = "CLIENT-REF-20260101-001")
+                example = "CLIENT-TEST-20260101-001")
         String clientRef
 ) {}

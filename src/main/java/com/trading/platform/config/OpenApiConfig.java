@@ -14,7 +14,7 @@ public class OpenApiConfig {
     public OpenAPI tradingPlatformOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Equity Trading Platform API")
+                        .title("BNP Trading Platform API")
                         .description("""
                                 High-speed equity-trading platform implementing the reserve → pay → confirm workflow.
                                 

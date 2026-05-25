@@ -12,9 +12,9 @@
     </parent>
 
     <groupId>com.trading</groupId>
-    <artifactId>trading-platform</artifactId>
+    <artifactId>bnp-trading-platform</artifactId>
     <version>1.0.0</version>
-    <name>Equity Trading Platform</name>
+    <name>BNP Trading Platform</name>
     <description>High-speed equity trading platform with inventory reservation</description>
 
     <properties>
