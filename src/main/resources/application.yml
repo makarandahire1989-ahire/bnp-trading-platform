@@ -53,3 +53,14 @@ springdoc:
 logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} [correlationId=%X{correlationId}] - %msg%n"
+redis:
+    host: suede-lock-handcrafted-15091.db.redis.io
+    port: 16729
+    password: bDD8LboydXwCrbMtUkeXRtsmoB43MrtT
+    timeout: ${REDIS_TIMEOUT_MS:2000}
+    lettuce:
+        pool:
+        max-active: ${REDIS_MAX_ACTIVE:8}
+        max-idle: ${REDIS_MAX_IDLE:8}
+        min-idle: ${REDIS_MIN_IDLE:0}
+        max-wait: ${REDIS_MAX_WAIT_MS:-1}

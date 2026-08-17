@@ -1,5 +1,6 @@
 package com.trading.platform.service;
 
+import com.trading.platform.caching.ProductCachingService;
 import com.trading.platform.dto.request.CreateProductRequest;
 import com.trading.platform.dto.response.ProductResponse;
 import com.trading.platform.entity.Product;
@@ -19,8 +20,11 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public ProductService(ProductRepository productRepository) {
+    private final ProductCachingService productCachingService;
+
+    public ProductService(ProductRepository productRepository, ProductCachingService productCachingService) {
         this.productRepository = productRepository;
+        this.productCachingService = productCachingService;
     }
 
     /**
@@ -46,8 +50,7 @@ public class ProductService {
      */
     @Transactional(readOnly = true)
     public ProductResponse getProduct(UUID productId) {
-        Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new ProductNotFoundException(productId));
+        Product product = productCachingService.getProduct(productId);
         return ProductResponse.from(product);
     }
 }

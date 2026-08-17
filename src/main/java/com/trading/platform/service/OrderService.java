@@ -1,5 +1,6 @@
 package com.trading.platform.service;
 
+import com.trading.platform.caching.OrderCachingService;
 import com.trading.platform.config.AppConfig;
 import com.trading.platform.dto.request.PlaceOrderRequest;
 import com.trading.platform.dto.response.OrderResponse;
@@ -49,15 +50,18 @@ public class OrderService {
     private final ProductRepository  productRepository;
     private final AppConfig          appConfig;
     private final MeterRegistry      meterRegistry;
+    private final OrderCachingService orderCachingService;
 
     public OrderService(OrderRepository orderRepository,
                         ProductRepository productRepository,
                         AppConfig appConfig,
-                        MeterRegistry meterRegistry) {
+                        MeterRegistry meterRegistry,
+                        OrderCachingService orderCachingService) {
         this.orderRepository   = orderRepository;
         this.productRepository = productRepository;
         this.appConfig         = appConfig;
         this.meterRegistry     = meterRegistry;
+        this.orderCachingService = orderCachingService;
     }
 
     /**
@@ -125,8 +129,9 @@ public class OrderService {
      */
     @Transactional(readOnly = true)
     public OrderResponse getOrder(UUID orderId) {
-        Order order = orderRepository.findById(orderId)
-                .orElseThrow(() -> new OrderNotFoundException(orderId));
+//        Order order = orderRepository.findById(orderId)
+//                .orElseThrow(() -> new OrderNotFoundException(orderId));
+        Order order = orderCachingService.getOrder(orderId);
         return OrderResponse.from(order);
     }
 
